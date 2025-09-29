@@ -1,47 +1,66 @@
-import React, { useReducer } from 'react';
-import './App.css';
+import React, { useReducer } from "react";
+import "../App.css";
 
-const initialState = { count: 0 };
+const initialState = { count: 0, step: 1 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    case 'reset':
-      return { count: 0 };
+    case "increment":
+      return { ...state, count: state.count + state.step };
+    case "decrement":
+      return { ...state, count: state.count - state.step };
+    case "reset":
+      return { ...state, count: 0 };
+    case "setStep":
+      return { ...state, step: action.payload };
     default:
-      throw new Error('Ação desconhecida');
+      throw new Error("Ação desconhecida");
   }
 }
 
-function CounterReducer() {
+export default function CounterReducer() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="container">
-      <h1>Contador com useReducer</h1>
-      <p className="description">
-        O <code>useReducer</code> gerencia estados complexos com uma função reducer,
-        ideal para múltiplas ações, como incrementar, decrementar e resetar. Resolve
-        o problema de lógica de estado espalhada, oferecendo uma abordagem centralizada
-        semelhante ao Redux.
-      </p>
-      <p>Contagem: {state.count}</p>
-      <div className="button-group">
-        <button className="primary" onClick={() => dispatch({ type: 'increment' })}>
-          Incrementar
-        </button>
-        <button className="secondary" onClick={() => dispatch({ type: 'decrement' })}>
-          Decrementar
-        </button>
-        <button className="tertiary" onClick={() => dispatch({ type: 'reset' })}>
-          Resetar
-        </button>
+    <div className="App">
+      <h1>Exemplo useReducer</h1>
+
+      <div className="split-container">
+        {/* Coluna esquerda: contador */}
+        <div className="split-left">
+          <p>Contagem: {state.count}</p>
+          <div className="button-group">
+            <button onClick={() => dispatch({ type: "increment" })}>Incrementar</button>
+            <button onClick={() => dispatch({ type: "decrement" })}>Decrementar</button>
+            <button onClick={() => dispatch({ type: "reset" })}>Resetar</button>
+          </div>
+          <div style={{ marginTop: "20px" }}>
+            <label>
+              Passo:
+              <input
+                type="number"
+                value={state.step}
+                onChange={(e) =>
+                  dispatch({ type: "setStep", payload: Number(e.target.value) })
+                }
+                style={{ marginLeft: "10px", width: "60px" }}
+              />
+            </label>
+          </div>
+        </div>
+
+        {/* Coluna direita: explicação */}
+        <div className="split-right">
+          <div className="theme-card claro">
+            <div className="theme-info">
+              <h3>🔹 useReducer</h3>
+              <p><strong>O que faz:</strong> gerencia estados complexos ou múltiplos valores de forma centralizada.</p>
+              <p><strong>Quando usar:</strong> quando você precisa de lógica de atualização mais complexa ou vários estados relacionados.</p>
+              <p><strong>Diferença:</strong> <code>useState</code> é bom para estados simples; <code>useReducer</code> centraliza e organiza estados complexos.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
-export default CounterReducer;
