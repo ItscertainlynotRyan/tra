@@ -1,0 +1,158 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Theme card: claro (white bg, black text) and escuro (black bg, white text) */
+.theme-card {
+  width: 90%;
+  max-width: 540px;
+  margin: 1.5rem auto;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.theme-card p {
+  margin: 0 0 1rem 0;
+}
+.theme-card.claro {
+  background: #ffffff;
+  color: #000000;
+}
+.theme-card.escuro {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Keep body neutral (white) so only .theme-card changes with the theme */
+body {
+  background: #ffffff;
+  color: #111111;
+}
+
+/* Button minimal/icon style */
+.theme-row button {
+  font-size: 1.25rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: transparent;
+  cursor: pointer;
+}
+.theme-card.escuro .theme-row button {
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* Button label spacing */
+.theme-row button { display: inline-flex; gap: 0.5rem; align-items: center; }
+.left-center button { font-size: 1.6rem; padding: 0.6rem 0.9rem; }
+
+/* Layout for the button + explanatory text */
+.theme-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.theme-row .theme-info {
+  text-align: left;
+}
+.theme-row .theme-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+}
+.theme-row .theme-info p {
+  margin: 0.25rem 0;
+  line-height: 1.35;
+}
+
+@media (max-width: 600px) {
+  .theme-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Split layout */
+.split-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  margin-top: 1.25rem;
+}
+.split-left, .split-right {
+  min-height: 260px;
+}
+.split-left {
+  display: flex;
+  flex-direction: column;
+}
+.logo-stack {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.left-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Make the right column hold the theme card centered */
+.split-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 880px) {
+  .split-container {
+    grid-template-columns: 1fr;
+  }
+  .split-left {
+    order: 1;
+  }
+  .split-right {
+    order: 2;
+  }
+}
